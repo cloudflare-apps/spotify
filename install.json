@@ -114,7 +114,7 @@
               }
             },
 
-            "track": {
+            "artist": {
               "order": 2,
               "type": "object",
               "title": "Follow Button",
@@ -127,14 +127,14 @@
                   "title": "Artist URI",
                   "type": "string",
                   "description": "This can be found in Spotify by right clicking an artist and selecting “Copy Spotify URI”.",
-                  "placeholder": "spotify:user:jessie:track:123ABC..."
+                  "placeholder": "spotify:artist:123ABC..."
                 }
               }
             },
 
             "location": {
               "title": "Location",
-              "description": "Where should the widget appear?",
+              "description": "Where should the widget appear on the page?",
               "order": 3,
               "type": "object",
               "format": "element",
@@ -144,10 +144,30 @@
               }
             },
 
-            "size": {
+            "position": {
               "order": 4,
+              "title": "Horizontal alignment",
+              "description": "How should the widget fit in the page?",
               "type": "string",
-              "title": "What size should the widget appear as?",
+              "default": "center",
+              "format": "radios",
+              "enum": [
+                "left",
+                "center",
+                "right"
+              ],
+              "enumNames": {
+                "left": "Left",
+                "center": "Center",
+                "right": "Right"
+              }
+            },
+
+            "size": {
+              "order": 5,
+              "type": "string",
+              "title": "Size",
+              "description": "What size should the widget appear as?",
               "format": "radios",
               "default": "large",
               "enum": [
@@ -161,9 +181,10 @@
             },
 
             "theme": {
-              "order": 5,
+              "order": 6,
               "type": "string",
-              "title": "What theme should the widget appear as?",
+              "title": "Color",
+              "description": "What color should the widget appear as?",
               "format": "radios",
               "default": "light",
               "enum": [
