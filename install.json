@@ -81,13 +81,15 @@
                 "URI": {
                   "order": 0,
                   "title": "Playlist Source",
+                  "description": "Login to Spotify to select your playlists.",
                   "type": "string",
                   "default": "custom",
                   "enum": [
-                    "custom",
+                    "custom"
                   ],
+                  "readonly": true,
                   "enumNames": {
-                    "custom": "Choose a custom playlist from a URI...",
+                    "custom": "Choose a custom playlist from a URI..."
                   }
                 },
 
