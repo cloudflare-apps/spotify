@@ -28,7 +28,7 @@
         "default": [
           {
             "artist": {
-              "URI": ""
+              "URI": "spotify:artist:7jefIIksOi1EazgRTfW2Pk"
             },
             "location": {
               "method": "prepend",
@@ -43,7 +43,7 @@
             "size": "large",
             "theme": "dark",
             "track": {
-              "URI": ""
+              "URI": "spotify:track:7tFiyTwD0nx5a1eklYtX2J"
             },
             "type": "playlist"
           }
@@ -135,7 +135,7 @@
                   "title": "Track URI",
                   "type": "string",
                   "description": "This can be found in Spotify by right clicking a track and selecting “Copy Spotify URI”.",
-                  "placeholder": "spotify:user:jessie:track:123ABC..."
+                  "placeholder": "spotify:track:123ABC..."
                 }
               }
             },
@@ -212,7 +212,7 @@
               "title": "Theme",
               "description": "What color scheme should the widget use?",
               "format": "radios",
-              "default": "dark",
+              "default": "light",
               "enum": [
                 "light",
                 "dark"
