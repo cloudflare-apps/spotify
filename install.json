@@ -1,0 +1,183 @@
+{
+  "resources": {
+    "body": [
+      {
+        "type": "style",
+        "src": "./build/app.css"
+      },
+      {
+        "type": "script",
+        "src": "./build/app.js"
+      }
+    ]
+  },
+  "preview": {
+    "handlers": [
+      {
+        "options": ["*"],
+        "execute": "INSTALL_SCOPE.setOptions(INSTALL_OPTIONS)"
+      }
+    ]
+  },
+  "options": {
+    "properties": {
+      "widgets": {
+        "title": "Widgets",
+        "order": 3,
+        "type": "array",
+        "items": {
+          "notitle": true,
+          "type": "object",
+          "properties": {
+            "type": {
+              "order": 0,
+              "type": "string",
+              "title": "What kind of widget should be displayed?",
+              "format": "radios",
+              "default": "playlist",
+              "enum": [
+                "playlist",
+                "track",
+                "artist"
+              ],
+              "enumNames": {
+                "playlist": "A playlist.",
+                "track": "A single track.",
+                "artist": "A follow button. "
+              }
+            },
+
+            "playlist": {
+              "order": 2,
+              "type": "object",
+              "title": "Playlist",
+              "showIf": {
+                "widgets[].type": "playlist"
+              },
+              "properties": {
+                "id": {
+                  "order": 0,
+                  "title": "Playlist Source",
+                  "type": "string",
+                  "default": "custom",
+                  "enum": [
+                    "custom",
+                    "test"
+                  ],
+                  "enumNames": {
+                    "custom": "Choose a custom playlist from a URI...",
+                    "test": "Test"
+                  }
+                },
+
+                "customURI": {
+                  "order": 1,
+                  "title": "Playlist URI",
+                  "type": "string",
+                  "description": "This can be found in Spotify by right clicking a playlist and selecting “Copy Spotify URI”.",
+                  "placeholder": "spotify:user:jessie:playlist:123ABC..."
+                },
+
+                "style": {
+                  "order": 2,
+                  "type": "string",
+                  "title": "How should songs appear?",
+                  "format": "radios",
+                  "default": "list",
+                  "enum": [
+                    "list",
+                    "coverart"
+                  ],
+                  "enumNames": {
+                    "list": "As a list of tracks.",
+                    "coverart": "With their cover art."
+                  }
+                }
+              }
+            },
+
+            "track": {
+              "order": 2,
+              "type": "object",
+              "title": "Track",
+              "showIf": {
+                "widgets[].type": "track"
+              },
+              "properties": {
+                "uri": {
+                  "order": 0,
+                  "title": "Track URI",
+                  "type": "string",
+                  "description": "This can be found in Spotify by right clicking a track and selecting “Copy Spotify URI”.",
+                  "placeholder": "spotify:user:jessie:track:123ABC..."
+                }
+              }
+            },
+
+            "track": {
+              "order": 2,
+              "type": "object",
+              "title": "Follow Button",
+              "showIf": {
+                "widgets[].type": "artist"
+              },
+              "properties": {
+                "uri": {
+                  "order": 0,
+                  "title": "Artist URI",
+                  "type": "string",
+                  "description": "This can be found in Spotify by right clicking an artist and selecting “Copy Spotify URI”.",
+                  "placeholder": "spotify:user:jessie:track:123ABC..."
+                }
+              }
+            },
+
+            "location": {
+              "title": "Location",
+              "description": "Where should the widget appear?",
+              "order": 3,
+              "type": "object",
+              "format": "element",
+              "default": {
+                "selector": "body",
+                "method": "prepend"
+              }
+            },
+
+            "size": {
+              "order": 4,
+              "type": "string",
+              "title": "What size should the widget appear as?",
+              "format": "radios",
+              "default": "large",
+              "enum": [
+                "small",
+                "large"
+              ],
+              "enumNames": {
+                "large": "Large",
+                "small": "Small"
+              }
+            },
+
+            "theme": {
+              "order": 5,
+              "type": "string",
+              "title": "What theme should the widget appear as?",
+              "format": "radios",
+              "default": "light",
+              "enum": [
+                "light",
+                "dark"
+              ],
+              "enumNames": {
+                "light": "Light",
+                "dark": "Dark"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

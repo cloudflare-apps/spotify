@@ -1,0 +1,22 @@
+cloudflare-app[app="spotify"] {
+  display: block;
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  cloudflare-app[app="spotify"] {
+    padding: .5em;
+  }
+}
+
+cloudflare-app[app="spotify"][data-position="left"] {
+  justify-content: flex-start;
+}
+
+cloudflare-app[app="spotify"][data-position="center"] {
+  justify-content: center;
+}
+
+cloudflare-app[app="spotify"][data-position="right"] {
+  justify-content: flex-end;
+}
