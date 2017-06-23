@@ -15,6 +15,10 @@
     large: {
       width: 300,
       height: 380
+    },
+    wide: {
+      width: 800,
+      height: 480
     }
   }
 
@@ -33,6 +37,10 @@
       },
       large: {
         width: 300,
+        height: 56
+      },
+      wide: {
+        width: 800,
         height: 56
       }
     }
@@ -82,6 +90,7 @@
     })
 
     widgetElements = options.widgets
+      .reverse()
       .filter(config => {
         if (!document.querySelector(config.location.selector)) return false
         if (config.type === 'playlist' && config.playlist.URI === 'custom' && !config.playlist.customURI) return false
@@ -94,7 +103,8 @@
         const container = INSTALL.createElement(config.location)
         container.setAttribute('app', 'spotify')
         container.setAttribute('data-position', config.position)
-        container.setAttribute('data-type', config.position)
+        container.setAttribute('data-size', config.size)
+        container.setAttribute('data-type', config.type)
 
         const size = SIZES[config.type][config.size]
         const iframe = document.createElement('iframe')

@@ -180,12 +180,14 @@
               "enum": [
                 "left",
                 "center",
-                "right"
+                "right",
+                "expand"
               ],
               "enumNames": {
-                "left": "Left",
-                "center": "Center",
-                "right": "Right"
+                "left": "Justify Left.",
+                "center": "Justify Center.",
+                "right": "Justify Right.",
+                "expand": "Stretch to fit the page."
               }
             },
 
@@ -201,8 +203,8 @@
                 "large"
               ],
               "enumNames": {
-                "large": "Large",
-                "small": "Small"
+                "small": "Small",
+                "large": "Large"
               }
             },
 

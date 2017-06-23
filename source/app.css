@@ -1,12 +1,27 @@
 cloudflare-app[app="spotify"] {
   display: block;
   display: flex;
+  flex: 0 0 auto;
+  max-width: 100%;
 }
 
 @media (min-width: 768px) {
   cloudflare-app[app="spotify"] {
     padding: .5em;
   }
+}
+
+@media (max-width: 768px) {
+  cloudflare-app[app="spotify"] > iframe {
+    padding: .5em 0;
+    width: 100% !important;
+  }
+}
+
+cloudflare-app[app="spotify"] > iframe {
+  display: block;
+  flex: 0 0 auto;
+  max-width: 100%;
 }
 
 cloudflare-app[app="spotify"][data-position="left"] {
@@ -19,4 +34,21 @@ cloudflare-app[app="spotify"][data-position="center"] {
 
 cloudflare-app[app="spotify"][data-position="right"] {
   justify-content: flex-end;
+}
+
+cloudflare-app[app="spotify"][data-position="expand"] {
+  padding: 0;
+}
+
+cloudflare-app[app="spotify"][data-position="expand"] > iframe {
+  flex: 1 0 auto;
+}
+
+cloudflare-app[app="spotify"][data-position="expand"][data-type="artist"] {
+  justify-content: center;
+  padding: .5em 0;
+}
+
+cloudflare-app[app="spotify"][data-position="expand"][data-type="artist"] > iframe {
+  flex: 0 0 auto;
 }
