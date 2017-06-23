@@ -25,6 +25,29 @@
         "title": "Widgets",
         "order": 3,
         "type": "array",
+        "default": [
+          {
+            "artist": {
+              "URI": ""
+            },
+            "location": {
+              "method": "prepend",
+              "selector": "body"
+            },
+            "playlist": {
+              "URI": "custom",
+              "customURI": "spotify:user:erebore:playlist:788MOXyTfcUb1tdw4oC7KJ",
+              "view": "list"
+            },
+            "position": "center",
+            "size": "large",
+            "theme": "dark",
+            "track": {
+              "URI": ""
+            },
+            "type": "playlist"
+          }
+        ],
         "items": {
           "notitle": true,
           "type": "object",
@@ -55,30 +78,31 @@
                 "widgets[].type": "playlist"
               },
               "properties": {
-                "id": {
+                "URI": {
                   "order": 0,
                   "title": "Playlist Source",
                   "type": "string",
                   "default": "custom",
                   "enum": [
                     "custom",
-                    "test"
                   ],
                   "enumNames": {
                     "custom": "Choose a custom playlist from a URI...",
-                    "test": "Test"
                   }
                 },
 
                 "customURI": {
                   "order": 1,
+                  "showIf": {
+                    "widgets[].playlist.URI": "custom"
+                  },
                   "title": "Playlist URI",
                   "type": "string",
                   "description": "This can be found in Spotify by right clicking a playlist and selecting “Copy Spotify URI”.",
                   "placeholder": "spotify:user:jessie:playlist:123ABC..."
                 },
 
-                "style": {
+                "view": {
                   "order": 2,
                   "type": "string",
                   "title": "How should songs appear?",
@@ -104,7 +128,7 @@
                 "widgets[].type": "track"
               },
               "properties": {
-                "uri": {
+                "URI": {
                   "order": 0,
                   "title": "Track URI",
                   "type": "string",
@@ -122,7 +146,7 @@
                 "widgets[].type": "artist"
               },
               "properties": {
-                "uri": {
+                "URI": {
                   "order": 0,
                   "title": "Artist URI",
                   "type": "string",
@@ -147,7 +171,7 @@
             "position": {
               "order": 4,
               "title": "Horizontal alignment",
-              "description": "How should the widget fit in the page?",
+              "description": "How should the widget sit in the page?",
               "type": "string",
               "default": "center",
               "format": "radios",
@@ -183,10 +207,10 @@
             "theme": {
               "order": 6,
               "type": "string",
-              "title": "Color",
-              "description": "What color should the widget appear as?",
+              "title": "Theme",
+              "description": "What color scheme should the widget use?",
               "format": "radios",
-              "default": "light",
+              "default": "dark",
               "enum": [
                 "light",
                 "dark"

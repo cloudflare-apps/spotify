@@ -4,27 +4,35 @@
   if (!window.addEventListener) return // Check for IE9+
 
   let options = INSTALL_OPTIONS
-  let container
+  let widgetElements = []
+
+  const PLAYER_SIZES = {
+    small: {
+      width: 300,
+      height: 80
+    },
+    large: {
+      width: 300,
+      height: 380
+    }
+  }
+
+  const FOLLOW_BUTTON_MODES = {
+    small: 'basic',
+    large: 'detail'
+  }
 
   const SIZES = {
+    playlist: PLAYER_SIZES,
+    track: PLAYER_SIZES,
     artist: {
       small: {
         width: 200,
-        height: 25
+        height: 28
       },
       large: {
         width: 300,
         height: 56
-      }
-    },
-    player: {
-      small: {
-        width: 300,
-        height: 80
-      },
-      large: {
-        width: 300,
-        height: 380
       }
     }
   }
@@ -34,55 +42,74 @@
     dark: 'black'
   }
 
-  const URLHelpers = {
+  const getURL = {
     artist (config) {
-      return `https://open.spotify.com/follow/1/?uri=spotify`
+      const size = FOLLOW_BUTTON_MODES[config.size]
+      const {URI} = config.artist
+
+      return `https://open.spotify.com/follow/1/?uri=${URI}&size=${size}&theme=${config.theme}`
     },
     playlist (config) {
-      const {id} = config
-      const theme = PLAYER_THEMES[options.theme]
+      const theme = PLAYER_THEMES[config.theme]
+      const URI = config.playlist.URI === 'custom' ? config.playlist.customURI : config.playlist.URI
 
-      return `https://open.spotify.com/embed?uri=spotify:playlist${id}&theme=${theme}&view=${options.view}`
+      return `https://open.spotify.com/embed?uri=${URI}&theme=${theme}&view=${config.playlist.view}`
     },
     track (config) {
-      const {id} = config
-      const theme = PLAYER_THEMES[options.theme]
+      const theme = PLAYER_THEMES[config.theme]
+      const {URI} = config.artist
 
-      return `https://open.spotify.com/embed?uri=spotify:track${id}&theme=${theme}&view=${options.view}`
+      return `https://open.spotify.com/embed?uri=${URI}&theme=${theme}`
     }
   }
 
-  function updateElement () {
-    container = INSTALL.createElement(options.location, container)
-    container.setAttribute('app', 'spotify')
-    container.setAttribute('data-position', options.position)
-
-    options.widgets.forEach(config => {
-      const size = SIZES[config.type][options.size]
-      const iframe = document.createElement('iframe')
-
-      iframe.height = size.height
-      iframe.width = size.width
-      iframe.frameBorder = '0'
-      iframe.setAttribute('allowtransparency', 'true')
-
-      iframe.src = URLHelpers[config.type](config)
-
-      container.appendChild(iframe)
+  function updateElements () {
+    widgetElements.forEach(element => {
+      if (element.parentElement) element.parentElement.removeChild(element)
     })
+
+    widgetElements = options.widgets
+      .filter(config => {
+        if (!document.querySelector(config.location.selector)) return false
+        if (config.type === 'playlist' && config.playlist.URI === 'custom' && !config.playlist.customURI) return false
+        if (config.type === 'track' && !config.track.URI) return false
+        if (config.type === 'artist' && !config.artist.URI) return false
+
+        return true
+      })
+      .map(config => {
+        const container = INSTALL.createElement(config.location)
+        container.setAttribute('app', 'spotify')
+        container.setAttribute('data-position', config.position)
+        container.setAttribute('data-type', config.position)
+
+        const size = SIZES[config.type][config.size]
+        const iframe = document.createElement('iframe')
+
+        iframe.height = size.height
+        iframe.width = size.width
+        iframe.frameBorder = '0'
+        iframe.setAttribute('allowtransparency', 'true')
+
+        iframe.src = getURL[config.type](config)
+
+        container.appendChild(iframe)
+
+        return container
+      })
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', updateElement)
+    document.addEventListener('DOMContentLoaded', updateElements)
   } else {
-    updateElement()
+    updateElements()
   }
 
   window.INSTALL_SCOPE = {
     setOptions (nextOptions) {
       options = nextOptions
 
-      updateElement()
+      updateElements()
     }
   }
 }())
