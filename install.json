@@ -19,8 +19,25 @@
       }
     ]
   },
+  "hooks": [
+    {
+      "endpoint": "https://teffen.fwd.wf",
+      "events": ["option-change:account"],
+      "block": true,
+      "authenticate": ["account"]
+    }
+  ],
   "options": {
     "properties": {
+      "account": {
+        "title": "Spotify Account",
+        "description": "Connect your Spotify account to list your playlists and followed artists.",
+        "type": "object",
+        "format": "account",
+        "services": ["spotify"],
+        "order": 0
+      },
+
       "widgets": {
         "title": "Widgets",
         "order": 3,
@@ -64,9 +81,9 @@
                 "artist"
               ],
               "enumNames": {
-                "playlist": "A playlist.",
-                "track": "A single track.",
-                "artist": "A follow button. "
+                "playlist": "A playlist",
+                "track": "A single track",
+                "artist": "A follow button"
               }
             },
 
@@ -184,10 +201,10 @@
                 "expand"
               ],
               "enumNames": {
-                "left": "Justify Left.",
-                "center": "Justify Center.",
-                "right": "Justify Right.",
-                "expand": "Stretch to fit the page."
+                "left": "Justify left",
+                "center": "Justify center",
+                "right": "Justify right",
+                "expand": "Stretch to fit the page"
               }
             },
 
