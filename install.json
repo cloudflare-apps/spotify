@@ -21,7 +21,7 @@
   },
   "hooks": [
     {
-      "endpoint": "https://teffen.fwd.wf",
+      "endpoint": "https://spotify-oauth.appstore.cfdata.org",
       "events": ["option-change:account"],
       "block": true,
       "authenticate": ["account"]
