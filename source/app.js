@@ -65,7 +65,8 @@
   const getURL = {
     artist (config) {
       const size = FOLLOW_BUTTON_MODES[config.size]
-      const URI = parseURI(config.artist.URI)
+      const URISource = config.artist.URI === 'custom' ? config.artist.customURI : config.artist.URI
+      const URI = parseURI(URISource)
 
       return `https://open.spotify.com/follow/1/?uri=${URI}&size=${size}&theme=${config.theme}`
     },

@@ -66,7 +66,6 @@
           }
         ],
         "items": {
-          "notitle": true,
           "type": "object",
           "properties": {
             "type": {
@@ -90,23 +89,21 @@
             "playlist": {
               "order": 2,
               "type": "object",
-              "title": "Playlist",
               "showIf": {
                 "widgets[].type": "playlist"
               },
+              "title": "Playlist Player",
               "properties": {
                 "URI": {
                   "order": 0,
-                  "title": "Playlist Source",
-                  "description": "Login to Spotify to select your playlists.",
+                  "title": "Playlist Name",
                   "type": "string",
                   "default": "custom",
                   "enum": [
                     "custom"
                   ],
-                  "readonly": true,
                   "enumNames": {
-                    "custom": "Choose a custom playlist from a URI..."
+                    "custom": "Choose a playlist from a URI..."
                   }
                 },
 
@@ -142,10 +139,7 @@
             "track": {
               "order": 2,
               "type": "object",
-              "title": "Track",
-              "showIf": {
-                "widgets[].type": "track"
-              },
+              "title": "Track Player",
               "properties": {
                 "URI": {
                   "order": 0,
@@ -167,6 +161,19 @@
               "properties": {
                 "URI": {
                   "order": 0,
+                  "title": "Artist",
+                  "type": "string",
+                  "default": "custom",
+                  "enum": [
+                    "custom"
+                  ],
+                  "enumNames": {
+                    "custom": "Choose an artist from a URI..."
+                  }
+                },
+
+                "customURI": {
+                  "order": 1,
                   "title": "Artist URI",
                   "type": "string",
                   "description": "This can be found in Spotify by right clicking an artist and selecting “Copy Spotify URI”.",
