@@ -21,7 +21,7 @@
   },
   "hooks": [
     {
-      "endpoint": "https://spotify-oauth.appstore.cfdata.org",
+      "endpoint": "https://cf-apps-spotify.herokuapp.com",
       "events": ["option-change:account"],
       "block": true,
       "authenticate": ["account"]
