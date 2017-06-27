@@ -45,7 +45,8 @@
         "default": [
           {
             "artist": {
-              "URI": "spotify:artist:7jefIIksOi1EazgRTfW2Pk"
+              "URI": "custom",
+              "customURI": "spotify:artist:7jefIIksOi1EazgRTfW2Pk"
             },
             "location": {
               "method": "prepend",
@@ -56,8 +57,8 @@
               "customURI": "spotify:user:erebore:playlist:788MOXyTfcUb1tdw4oC7KJ",
               "view": "list"
             },
-            "position": "center",
-            "size": "large",
+            "position": "expand",
+            "size": "small",
             "theme": "dark",
             "track": {
               "URI": "spotify:track:7tFiyTwD0nx5a1eklYtX2J"
@@ -88,11 +89,11 @@
 
             "playlist": {
               "order": 2,
-              "type": "object",
               "showIf": {
                 "widgets[].type": "playlist"
               },
-              "title": "Playlist Player",
+              "type": "object",
+              "title": "Playlist",
               "properties": {
                 "URI": {
                   "order": 0,
@@ -138,8 +139,11 @@
 
             "track": {
               "order": 2,
+              "showIf": {
+                "widgets[].type": "track"
+              },
               "type": "object",
-              "title": "Track Player",
+              "title": "Single Track",
               "properties": {
                 "URI": {
                   "order": 0,
@@ -153,11 +157,11 @@
 
             "artist": {
               "order": 2,
-              "type": "object",
-              "title": "Follow Button",
               "showIf": {
                 "widgets[].type": "artist"
               },
+              "type": "object",
+              "title": "Follow Button",
               "properties": {
                 "URI": {
                   "order": 0,
