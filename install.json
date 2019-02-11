@@ -21,7 +21,7 @@
   },
   "hooks": [
     {
-      "endpoint": "https://cf-apps-spotify.herokuapp.com",
+      "endpoint": "https://spotify.cloudflareapps.com",
       "events": ["option-change:account"],
       "block": true,
       "authenticate": ["account"]
